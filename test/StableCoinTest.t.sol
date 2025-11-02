@@ -3,17 +3,19 @@ pragma solidity ^0.8.18;
 
 import {Test} from "forge-std/Test.sol";
 import {StableCoin} from "../src/DecentralizedStableCoin.sol";
+import {DeployStableCoinScript} from "../script/StableCoin.s.sol";
 import {console} from "forge-std/console.sol";
 
 contract TestStableCoin is Test {
     StableCoin private stableCoin;
-
+    DeployStableCoinScript private deployer;
     address private admin = makeAddr("Admin");
     address private user = makeAddr("Vishal");
 
     function setUp() public {
         vm.prank(admin);
-        stableCoin = new StableCoin();
+        deployer = new DeployStableCoinScript();
+        stableCoin = deployer.run(admin);
     }
 
     function testMint() public {
