@@ -269,7 +269,7 @@ contract DSCEngine is ReentrancyGuard {
         }
         uint256 collateralAdjustedForThreshold = (collatearlValueInUsd * LIQUIDATION_THRESHOLD) / LIQUIDATION_PRECISION;
         // console.log((collateralAdjustedForThreshold ));
-        return (collateralAdjustedForThreshold ) / totalDscMinted;
+        return (collateralAdjustedForThreshold) / totalDscMinted;
     }
 
     function _redeemCollateral(address token, uint256 collateralAmount, address from, address to) private {
@@ -290,13 +290,14 @@ contract DSCEngine is ReentrancyGuard {
         i_Stablecoin.burn(coinAmount);
     }
 
+    //
+    // external pure & view functions
+    //
+
     function getPrecision() external pure returns (uint256) {
         return PRECISION;
     }
 
-    //
-    // external pure & view functions
-    //
     function getAccountInformation(address user)
         external
         returns (uint256 totalDscMinted, uint256 collatearlValueInUsd)
